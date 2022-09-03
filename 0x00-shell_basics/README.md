@@ -1,0 +1,1 @@
+Writing a script for current working directory 
