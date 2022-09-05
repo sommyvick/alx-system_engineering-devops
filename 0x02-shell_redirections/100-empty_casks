@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -empty pipe rev pipe cut -d '/' -f 1 pipe rev
+find . -empty | rev | cut -d '/' -f 1 | rev
