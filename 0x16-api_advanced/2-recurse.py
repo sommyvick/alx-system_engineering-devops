@@ -1,21 +1,13 @@
 #!/usr/bin/python3
-"""Function to print hot posts on a given Reddit subreddit."""
-import requests
+import sys
 
-
-def top_ten(subreddit):
-    """Print the titles of the 10 hottest posts on a given subreddit."""
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
-    params = {
-        "limit": 10
-    }
-    response = requests.get(url, headers=headers, params=params,
-                            allow_redirects=False)
-    if response.status_code == 404:
+if __name__ == '__main__':
+    recurse = __import__('2-recurse').recurse
+    if len(sys.argv) < 2:
+        print("Please pass an argument for the subreddit to search.")
+    else:
+        result = recurse(sys.argv[1])
+    if result is not None:
+        print(len(result))
+    else:
         print("None")
-        return
-    results = response.json().get("data")
-    [print(c.get("data").get("title")) for c in results.get("children")]
